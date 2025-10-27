@@ -5,7 +5,7 @@
   --color-green-secondary: lch(30 75 120);
   --color-red-primary: lch(40 75 36);
   --color-red-secondary: lch(30 75 36);
-  --font-size-display: 2.828427rem;
+  --font-size-display: 4rem;
   --gradient-dice: linear-gradient(0.875turn, cornflowerblue, fuchsia, cornflowerblue);
   --line-height-primary: 1.681793;
   --line-height-secondary: 1.189207;
@@ -77,10 +77,10 @@ input:focus {
   background-size: 100% 200%;
   clip-path: polygon(50% 0%, 93.75% 25%, 93.75% 75%, 50% 100%, 6.25% 75%, 6.25% 25%);
   margin: 0 auto 2rem;
-  padding-top: 33.3333%;
+  padding-top: 16rem;
   position: relative;
   transition: background-color 500ms linear;
-  width: 33.3333%;
+  width: 16rem;
 }
 
 #display {
