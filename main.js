@@ -103,7 +103,6 @@ function setupDiceInteraction() {
 
 const init = () => {
   setupEventListeners();
-  display.textContent = '0';
   setupDiceInteraction();
 };
 
