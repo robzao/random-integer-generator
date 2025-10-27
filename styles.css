@@ -86,7 +86,7 @@ input:focus {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  user-select: text;
+  user-select: none;
   z-index: 100;
 }
 
