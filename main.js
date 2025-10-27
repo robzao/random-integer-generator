@@ -1,3 +1,4 @@
+const dice = document.getElementById('dice');
 const fromInput = document.getElementById('from');
 const toInput = document.getElementById('to');
 const display = document.getElementById('display');
@@ -67,7 +68,10 @@ const handleStart = () => {
   }
 };
 
-const handleStop = () => stopGenerator();
+const handleStop = () => {
+  stopGenerator();
+  triggerPulse(display);
+}
 
 const handleInput = (e) => {
   sanitizeValue(e.target);
@@ -87,9 +91,20 @@ const setupEventListeners = () => {
   toInput.addEventListener('input', handleInput);
 };
 
+const triggerPulse = (element) => {
+  element.classList.add('transition-pulse');
+  setTimeout(() => { element.classList.remove('transition-pulse') }, 350);
+};
+
+function setupDiceInteraction() {
+  dice.addEventListener('mouseover', () => { triggerPulse(display) });
+  dice.addEventListener('click', () => { triggerPulse(display) });
+}
+
 const init = () => {
   setupEventListeners();
   display.textContent = '0';
+  setupDiceInteraction();
 };
 
 document.addEventListener('DOMContentLoaded', init);
