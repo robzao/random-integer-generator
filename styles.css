@@ -1,12 +1,12 @@
 :root {
   --background-color-primary: lch(3 3 270);
   --background-color-secondary: lch(13 3 270);
-  --color-green-primary: lch(43 80 120);
-  --color-green-secondary: lch(33 80 120);
-  --color-red-primary: lch(43 80 40);
-  --color-red-secondary: lch(33 80 40);
+  --color-green-primary: lch(43 81 120);
+  --color-green-secondary: lch(33 81 120);
+  --color-red-primary: lch(43 81 40);
+  --color-red-secondary: lch(33 81 40);
   --font-size-display: 4rem;
-  --gradient-dice: linear-gradient(0.875turn, lch(53 80 313), lch(53 80 331), lch(53 80 313));
+  --gradient-dice: linear-gradient(0.875turn, lch(53 81 313), lch(53 81 324), lch(53 81 313));
   --line-height-primary: 1.681793;
   --line-height-secondary: 1.189207;
   --text-color-primary: white;
@@ -86,10 +86,10 @@ input:focus {
 }
 
 .dice-lines {
-  filter: drop-shadow(0 1px 1px white);
+  filter: drop-shadow(0 1px 1px lch(63 81 324));
   fill: none;
-  stroke: rgba(255, 255, 255, 0.125);
-  stroke-width: 2;
+  stroke: lch(63 81 324 / 0.5);
+  stroke-width: 1;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
