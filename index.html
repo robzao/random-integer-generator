@@ -9,12 +9,34 @@
 <body>
   <div class="container">
     <div id="dice">
+      <svg id="dice-image" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g>
+          <line class="dice-lines" x1="50" y1="0" x2="50" y2="21.875" />
+          <line class="dice-lines" x1="50" y1="0" x2="6.25" y2="25" />
+          <line class="dice-lines" x1="50" y1="0" x2="93.75" y2="25" />
+          <line class="dice-lines" x1="50" y1="21.875" x2="6.25" y2="25" />
+          <line class="dice-lines" x1="50" y1="21.875" x2="93.75" y2="25" />
+          <line class="dice-lines" x1="50" y1="21.875" x2="25" y2="66.666667" />
+          <line class="dice-lines" x1="50" y1="21.875" x2="75" y2="66.666667" />
+          <line class="dice-lines" x1="6.25" y1="25" x2="25" y2="66.666667" />
+          <line class="dice-lines" x1="6.25" y1="25" x2="6.25" y2="75" />
+          <line class="dice-lines" x1="93.75" y1="25" x2="75" y2="66.666667" />
+          <line class="dice-lines" x1="93.75" y1="25" x2="93.75" y2="75" />
+          <line class="dice-lines" x1="25" y1="66.666667" x2="75" y2="66.666667" />
+          <line class="dice-lines" x1="25" y1="66.666667" x2="6.25" y2="75" />
+          <line class="dice-lines" x1="25" y1="66.666667" x2="50" y2="100" />
+          <line class="dice-lines" x1="75" y1="66.666667" x2="93.75" y2="75" />
+          <line class="dice-lines" x1="75" y1="66.666667" x2="50" y2="100" />
+          <line class="dice-lines" x1="6.25" y1="75" x2="50" y2="100" />
+          <line class="dice-lines" x1="93.75" y1="75" x2="50" y2="100" />
+        </g>
+      </svg>
       <div id="display">1</div>
     </div>
     <div class="grid-2">
       <input id="from" type="number" value="1" step="1" placeholder="From" />
       <button id="start">Start</button>
-      <input id="to" type="number" value="6" step="1" placeholder="To" />
+      <input id="to" type="number" value="20" step="1" placeholder="To" />
       <button id="stop">Stop</button>
     </div>
   </div>
