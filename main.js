@@ -57,7 +57,7 @@ const getRangeAndCheckFixed = () => {
 
 const triggerPulse = (element) => {
   element.classList.add('transition-pulse');
-  setTimeout(() => { element.classList.remove('transition-pulse') }, 350);
+  setTimeout(() => { element.classList.remove('transition-pulse') }, 360);
 };
 
 const handleStart = () => {
@@ -119,6 +119,7 @@ function setupDiceInteraction() {
 const init = () => {
   setupEventListeners();
   setupDiceInteraction();
+  triggerPulse(display);
 };
 
 document.addEventListener('DOMContentLoaded', init);
