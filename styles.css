@@ -68,7 +68,7 @@ input:focus {
   background-color: var(--color-blue); 
   background-image: var(--gradient-dice);
   background-size: 100% 200%;
-  clip-path: polygon(50% 0%, 93.75% 25%, 93.75% 75%, 50% 100%, 6.25% 75%, 6.25% 25%);
+  clip-path: polygon(50% 0%, 93.055556% 25%, 93.055556% 75%, 50% 100%, 6.944444% 75%, 6.944444% 25%);
   margin: 0 auto 2rem;
   padding-top: 100%;
   position: relative;
