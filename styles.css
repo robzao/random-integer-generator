@@ -1,16 +1,15 @@
 :root {
-  --background-color-primary: hsl(0.625turn 12.5% 6.25%);
-  --background-color-secondary: hsl(0.625turn 12.5% 12.5%);
-  --color-green-primary: lch(40 75 120);
-  --color-green-secondary: lch(30 75 120);
-  --color-red-primary: lch(40 75 36);
-  --color-red-secondary: lch(30 75 36);
+  --background-color-primary: lch(3 3 270);
+  --background-color-secondary: lch(13 3 270);
+  --color-green-primary: lch(43 80 120);
+  --color-green-secondary: lch(33 80 120);
+  --color-red-primary: lch(43 80 40);
+  --color-red-secondary: lch(33 80 40);
   --font-size-display: 4rem;
-  --gradient-dice: linear-gradient(0.875turn, cornflowerblue, fuchsia, cornflowerblue);
+  --gradient-dice: linear-gradient(0.875turn, lch(53 80 313), lch(53 80 331), lch(53 80 313));
   --line-height-primary: 1.681793;
   --line-height-secondary: 1.189207;
   --text-color-primary: white;
-  --text-color-secondary: hsla(0.625turn 12.5% 56.25%);
 }
 
 *,
@@ -71,10 +70,10 @@ input:focus {
   background-size: 100% 200%;
   clip-path: polygon(50% 0%, 93.75% 25%, 93.75% 75%, 50% 100%, 6.25% 75%, 6.25% 25%);
   margin: 0 auto 2rem;
-  padding-top: 16rem;
+  padding-top: 100%;
   position: relative;
   transition: background-color 500ms linear;
-  width: 16rem;
+  width: 100%;
 }
 
 #dice-image {
@@ -159,4 +158,11 @@ button:hover {
 
 .transition-pulse {
   animation: pulse-once 250ms ease-in-out;
+}
+
+@media only screen and (min-width: 384px) {
+  #dice {
+    padding-top: 66.666667%;
+    width: 66.666667%;
+  }
 }
