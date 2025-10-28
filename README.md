@@ -16,8 +16,8 @@ The application reads the boundaries, applies strict sanitization (digits only),
 
 | Field | Restriction | Description |
 | :--- | :--- | :--- |
-| **From** | **Positive Integer** | The minimum boundary of the range (inclusive). Only positive digits are permitted. |
-| **To** | **Positive Integer** | The maximum boundary of the range (inclusive). Only positive digits are permitted. |
+| **From** | **Positive Integer (0 to 999999)** | The minimum boundary of the range (inclusive). Only positive digits are permitted, capped at 999999. |
+| **To** | **Positive Integer (0 to 999999)** | The maximum boundary of the range (inclusive). Only positive digits are permitted, capped at 999999. |
 
 ### Calculation and Control Logic
 
@@ -25,13 +25,13 @@ The core logic handles three main states to determine the output, ensuring that 
 
 | State | Condition | Action |
 | :--- | :--- | :--- |
-| **Empty/Invalid** | Either **From** or **To** fields are empty. | Generator is blocked; **Display** shows `0`. |
+| **Empty/Invalid** | Both fields are empty. | Generator is blocked; **Display** shows `0`. |
 | **Fixed Value** | `From` value equals `To` value. | Generator is blocked; **Display** shows the fixed value. |
 | **Running Range** | `From` and `To` are valid and different. | The internal calculation uses the smaller value as `min` and the larger as `max`, regardless of the order entered in the UI. |
 
 | Logic Detail | Description | Simple Notation |
 | :--- | :--- | :--- |
-| **Input Sanitization** | Non-digit characters are immediately removed from the input field upon typing. | `Input Text` -> `replace(/\D/g, '')` |
+| **Input Sanitization** | Non-digit characters are removed, and the value is **capped at 999999**. | `Input Text` -> `replace(/\D/g, '')` + `Max 999999` |
 | **Range Ordering** | Guarantees that the minimum value is always less than or equal to the maximum value **internally**. | If `ValFrom` > `ValTo`, then `min` = `ValTo` and `max` = `ValFrom`. |
 | **Random Number** | The final number is generated inclusively within the determined range. | `Floor((max - min + 1) * Math.random()) + min` |
 
@@ -40,7 +40,7 @@ The core logic handles three main states to determine the output, ensuring that 
 | Feature | Description |
 | :--- | :--- |
 | **Start** | Begins the continuous generation of random numbers with a standard refresh interval (125ms). |
-| **Stop** | Clears the internal timer, halting the generation and freezing the last generated number on the display. |
+| **Stop** | Clears the internal timer, halting the generation and **freezing the last generated number** on the display. |
 | **Non-Manipulative UX** | The input values are never altered (swapped or reset to 0) in the user interface; the ordering is handled internally by the application logic. |
 
 ---
@@ -49,4 +49,5 @@ The core logic handles three main states to determine the output, ensuring that 
 
 | Element | Format | Purpose |
 | :--- | :--- | :--- |
-| **Display** | Integer | Shows the current or final random integer, or `0` if inputs are invalid/empty. |
+| **Display (While Stopped/Adjusting)** | Integer | Shows the **maximum value** of the defined range, or the value of a single filled input, or `0` if empty. |
+| **Display (While Running)** | Integer | Shows the continuously generated random integer. |

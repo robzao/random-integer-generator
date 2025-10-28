@@ -17,6 +17,11 @@ const sanitizeValue = (input) => {
     value = value.replace(/^0+/, '');
     if (value === '') value = '0';
   }
+  const numValue = parseInt(value, 10);
+  const MAX_LIMIT = 999999;
+  if (numValue > MAX_LIMIT) {
+    value = MAX_LIMIT.toString();
+  }
   input.value = value;
 };
 
@@ -36,10 +41,7 @@ const getRangeAndCheckFixed = () => {
   const valFrom = parseValue(fromInput);
   const valTo = parseValue(toInput);
   if (fromInput.value === '' || toInput.value === '') {
-    return { status: 'empty' };
-  }
-  if (valFrom === valTo) {
-    return { status: 'fixed', value: valFrom };
+    return { status: 'empty', min: 0 };
   }
   let min = valFrom;
   let max = valTo;
@@ -47,7 +49,15 @@ const getRangeAndCheckFixed = () => {
     min = valTo;
     max = valFrom;
   }
+  if (min === max) {
+    return { status: 'fixed', value: min };
+  }
   return { status: 'running', min, max };
+};
+
+const triggerPulse = (element) => {
+  element.classList.add('transition-pulse');
+  setTimeout(() => { element.classList.remove('transition-pulse') }, 350);
 };
 
 const handleStart = () => {
@@ -76,12 +86,22 @@ const handleStop = () => {
 const handleInput = (e) => {
   sanitizeValue(e.target);
   stopGenerator();
-  const range = getRangeAndCheckFixed();
-  if (range.status === 'empty') {
-    display.textContent = '0';
-  } else if (range.status === 'fixed') {
-    display.textContent = range.value.toString();
+  const valFromText = fromInput.value;
+  const valToText = toInput.value;
+  const valFrom = parseValue(fromInput);
+  const valTo = parseValue(toInput);
+  let newDisplayValue = '0';
+  if (valFromText === '' && valToText === '') {
+    newDisplayValue = '0';
+  } else if (valFromText !== '' && valToText === '') {
+    newDisplayValue = valFrom.toString();
+  } else if (valFromText === '' && valToText !== '') {
+    newDisplayValue = valTo.toString();
+  } else {
+    const maxVal = Math.max(valFrom, valTo);
+    newDisplayValue = maxVal.toString();
   }
+  display.textContent = newDisplayValue;
 };
 
 const setupEventListeners = () => {
@@ -89,11 +109,6 @@ const setupEventListeners = () => {
   stopButton.addEventListener('click', handleStop);
   fromInput.addEventListener('input', handleInput);
   toInput.addEventListener('input', handleInput);
-};
-
-const triggerPulse = (element) => {
-  element.classList.add('transition-pulse');
-  setTimeout(() => { element.classList.remove('transition-pulse') }, 350);
 };
 
 function setupDiceInteraction() {
